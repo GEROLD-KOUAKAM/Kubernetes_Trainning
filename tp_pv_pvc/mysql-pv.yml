@@ -1,0 +1,23 @@
+kind: Pod
+metadata:
+  name: mysql-pv
+spec:
+  containers:
+  - image: mysql
+    name: msql
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: mysql-data
+    env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: password
+      - name: MYSQL_DATABASE
+        value: eazytraining
+      - name: MYSQL_USER
+        value: eazy
+      - name: MYSQL_PASSWORD
+        value: eazy
+  volumes:
+  - name: mysql-data
+    persistentVolumeClaim:
+      claimName: pvc
